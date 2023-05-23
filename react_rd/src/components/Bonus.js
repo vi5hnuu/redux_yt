@@ -1,10 +1,17 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { actions } from '../store/slices/bonusSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { thunks } from '../store/slices/bonusSlice'
+import { ClockLoader } from 'react-spinners'
 
 function Bonus({ bonus }) {
   const ref = useRef(null)
+  const bonusS = useSelector(state => state.bonusS)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(thunks.initilizeBonus(1))
+  }, [dispatch])
 
   function onIncrementHandler() {
     dispatch(actions.increment())
@@ -16,18 +23,20 @@ function Bonus({ bonus }) {
     const x = +ref.current.value
     dispatch(actions.incrementAmtByX({ x }))
   }
+
   return <div className='bonus-container'>
     <h2>Bonuses</h2>
     <div className='info'>
       <p>Points</p>
-      <p>{bonus}</p>
+      {(bonusS.pending && !bonusS.error) ? <ClockLoader size={24} /> : <p>${bonus}</p>}
+      {bonusS.error && <p>${bonusS.error}</p>}
     </div>
     <div className='actions'>
-      <button onClick={onIncrementHandler}>Increment</button>
-      <button onClick={onDecrementHandler}>Decrement</button>
+      <button disabled={bonusS.pending} onClick={onIncrementHandler}>Increment</button>
+      <button disabled={bonusS.pending} onClick={onDecrementHandler}>Decrement</button>
       <div className='input-button'>
         <input ref={ref} type='number' defaultValue={0} />
-        <button onClick={onIncrementByXHandler}>Increment By X</button>
+        <button disabled={bonusS.pending} onClick={onIncrementByXHandler}>Increment By X</button>
       </div>
     </div>
   </div>
