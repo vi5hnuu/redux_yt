@@ -1,0 +1,78 @@
+.main {
+  background-color: #023e8a;
+  min-width: 40rem;
+  width: 75%;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 5rem 7rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+h1,
+h2 {
+  text-align: center;
+  font-size: x-large;
+  text-transform: uppercase;
+  color: #03045e;
+}
+h1 {
+  color: #caf0f8;
+  margin-bottom: 2.5rem;
+}
+.info {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+.info-container,
+.account-container,
+.bonus-container {
+  background-color: #00b4d8;
+  padding: 1.5rem 2rem;
+  border-radius: 5px;
+}
+.actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.actions button,
+.actions button:active {
+  display: flex;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2.5rem;
+  font-weight: bold;
+}
+.actions button:hover {
+  background-color: #caf0f8;
+  transition: all 0.5s;
+}
+
+.actions > button {
+  border-radius: 100px;
+}
+.input-button {
+  display: flex;
+}
+.input-button input {
+  width: 10rem;
+  border: 2px solid transparent;
+  border-radius: 100px 0 0 100px;
+  padding: 1.25rem 2.5rem;
+  padding-right: 0;
+}
+.input-button input:focus {
+  outline: none;
+  border: 2px solid #03045e;
+}
+
+.input-button button {
+  border: none;
+  border-radius: 0 100px 100px 0;
+}
